@@ -19,7 +19,7 @@ class Products(models.Model):
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name="Описание")
     category = models.ForeignKey("my_shop.Categories", on_delete=models.RESTRICT, related_name="products", null=False, blank=False,)
     created = models.DateTimeField(auto_now_add=True)
-    price = models.DecimalField(max_digits=20, decimal_places=2, null=False, blank=False)
+    price = models.DecimalField(max_digits=7, decimal_places=2, null=False, blank=False)
     image = models.URLField(max_length=300, null=False, blank=False)
     stock = models.PositiveIntegerField(default=0, null=False, blank=False, verbose_name="Остаток")
 
