@@ -1,12 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from my_shop.models import Products, Categories
-from my_shop.forms import ProductsForm, CategoriesForm
+from my_shop.forms import ProductsForm, SearchForm
+
 
 # Create your views here.
 def products_view(request):
     products = Products.objects.filter(stock__gt=0).order_by("category__name", "name")
-    context = {'products': products}
+    search_form = SearchForm(request.GET)
+
+    if search_form.is_valid():
+        name = search_form.cleaned_data.get('name')
+        if name:
+            products = products.filter(name__icontains=name)
+
+    context = {'products': products, 'search_form': search_form}
     return render(request, "my_shop_forms/products.html", context)
 
 def categories_view(request):

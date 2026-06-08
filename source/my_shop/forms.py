@@ -1,6 +1,14 @@
 from django.forms import ModelForm, widgets, IntegerField, DecimalField
 from django.core.exceptions import ValidationError
 from my_shop.models import Products, Categories
+from django import forms
+
+class SearchForm(forms.Form):
+    name = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Search name'})
+    )
+
 
 class CategoriesForm(ModelForm):
     class Meta:
