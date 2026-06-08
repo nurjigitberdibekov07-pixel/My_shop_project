@@ -5,7 +5,7 @@ from my_shop.forms import ProductsForm, CategoriesForm
 
 # Create your views here.
 def products_view(request):
-    products = Products.objects.filter(stock__gt=0).order_by("-category", "name")
+    products = Products.objects.filter(stock__gt=0).order_by("category__name", "name")
     context = {'products': products}
     return render(request, "my_shop_forms/products.html", context)
 
@@ -33,9 +33,11 @@ def add_product(request):
             return render(request, "my_shop_forms/product_add.html", {'form': form})
 
 def delete_product(request, pk):
-    product = Products.objects.get(pk=pk)
-    product.delete()
+    if request.method == "POST":
+        product = get_object_or_404(Products, pk=pk)
+        product.delete()
     return redirect("products")
+
 
 def edit_product(request, pk):
     product = Products.objects.get(pk=pk)
@@ -59,8 +61,10 @@ def add_category(request):
         name = request.POST.get("name", "").strip()
         if not name:
             return render(request, "my_shop_forms/category_add.html", {"error": "Please enter a name"})
+        if Categories.objects.filter(name=name).exists():
+            return render(request, "my_shop_forms/category_add.html", {"error": "Category with this name already exists"})
         Categories.objects.create(name=name, description=request.POST.get("description", "").strip())
-        return redirect("add_category")
+    return redirect("categories_view")
 
 def delete_category(request, pk):
     category = Categories.objects.get(pk=pk)
