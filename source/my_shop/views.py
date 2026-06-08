@@ -63,10 +63,10 @@ def add_category(request):
         return redirect("add_category")
 
 def delete_category(request, pk):
-    if request.method == "POST":
-        product = get_object_or_404(Products, pk=pk)
-        product.delete()
-    return redirect("products")
+    category = Categories.objects.get(pk=pk)
+    Products.objects.filter(category=category).delete()
+    category.delete()
+    return redirect("categories_view")
 
 def edit_category(request, pk):
     category = Categories.objects.get(pk=pk)
