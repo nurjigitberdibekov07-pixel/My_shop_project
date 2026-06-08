@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from my_shop.models import Products, Categories
+from my_shop.forms import ProductsForm, CategoriesForm
 
 # Create your views here.
 def products_view(request):
@@ -19,21 +20,17 @@ def product_detail(request, pk):
     return render(request, "my_shop_forms/detail_product.html", context)
 
 def add_product(request):
+    form = ProductsForm()
     if request.method == "GET":
-        categories = Categories.objects.all()
-        context = { 'categories': categories}
-        return render(request, "my_shop_forms/product_add.html", context)
-    elif request.method == "POST":
-        name = request.POST.get("name", "").strip()
-        price = request.POST.get("price", "").strip()
-        image = request.POST.get("image", "").strip()
-        category = request.POST.get("category", "").strip()
-        description = request.POST.get("description", "").strip()
-        if not name or not price or not image or not category:
-            return render(request,"my_shop_forms/product_add.html", context={"error": "Please enter a title, price, image"})
-        category_obj = Categories.objects.get(pk=category)
-        product = Products.objects.create(name=name, price=price, image=image, category=category_obj, description=description)
-        return redirect("product_detail", pk=product.pk)
+        return render(request, "my_shop_forms/product_add.html", {'form': form})
+
+    if request.method == "POST":
+        form = ProductsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("products")
+        else:
+            return render(request, "my_shop_forms/product_add.html", {'form': form})
 
 def delete_product(request, pk):
     product = Products.objects.get(pk=pk)
