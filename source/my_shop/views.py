@@ -5,7 +5,7 @@ from my_shop.forms import ProductsForm, CategoriesForm
 
 # Create your views here.
 def products_view(request):
-    products = Products.objects.all()
+    products = Products.objects.filter(stock__gt=0).order_by("-category", "name")
     context = {'products': products}
     return render(request, "my_shop_forms/products.html", context)
 
