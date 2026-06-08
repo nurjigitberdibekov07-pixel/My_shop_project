@@ -4,9 +4,9 @@ from django.contrib import admin
 from my_shop.models import Products, Categories
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "description", "price", "image", "category", "created"]
+    list_display = ["id", "name", "description", "price", "image", "category", "created", "stock"]
     search_fields = ["name", "id"]
-    fields = ["name", "description", "price", "image", "category", "created"]
+    fields = ["name", "description", "price", "image", "category", "created", "stock"]
     readonly_fields = ["created"]
 
 
