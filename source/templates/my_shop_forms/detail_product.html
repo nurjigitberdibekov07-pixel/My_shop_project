@@ -21,10 +21,13 @@
               <p class="card-text">{% if product.description  %}{{ product.description }} {% else %} --- {% endif %}</p>
               <p class="card-text"><small class="text-body-secondary">{{ product.created }}</small></p>
               <a href="{% url 'edit_product' product.pk %}" class="btn btn-primary">Edit</a>
-              <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger">Delete</a>
+              <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#product-{{ product.pk }}-Modal">
+                            <i class="fa-regular fa-trash-can">Delete</i>
+                    </button>
           </div>
         </div>
       </div>
     </div>
+    {% include 'partial/product_delete_modal.html' with product=product %}
 
 {% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from my_shop.models import Products, Categories
 from my_shop.forms import ProductsForm, CategoriesForm
@@ -39,21 +39,17 @@ def delete_product(request, pk):
 
 def edit_product(request, pk):
     product = Products.objects.get(pk=pk)
+    form = ProductsForm(instance=product)
+    context = {'product': product, 'form': form}
     if request.method == "GET":
-        categories = Categories.objects.all()
-        return render(request, "my_shop_forms/product_edit.html", {'product': product, 'categories': categories})
-    elif request.method == "POST":
-        product.name = request.POST.get("name", "").strip()
-        product.price = request.POST.get("price", "").strip()
-        product.image = request.POST.get("image", "").strip()
-        product.description = request.POST.get("description", "").strip()
-        category_pk = request.POST.get("category", "").strip()
-        product.category = Categories.objects.get(pk=category_pk)
-        if not product.name or not product.price or not product.image or not category_pk:
-            return render(request, "my_shop_forms/product_edit.html",
-                          context={"error": "Please enter a title, price, image", "product": product})
-        product.save()
-        return redirect("products")
+        return render(request, "my_shop_forms/product_edit.html", context)
+
+    if request.method == "POST":
+        form = ProductsForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect("products")
+        return render(request, "my_shop_forms/product_edit.html", context)
 
 
 def add_category(request):
@@ -67,10 +63,10 @@ def add_category(request):
         return redirect("add_category")
 
 def delete_category(request, pk):
-    category = Categories.objects.get(pk=pk)
-    Products.objects.filter(category=category).delete()
-    category.delete()
-    return redirect("categories_view")
+    if request.method == "POST":
+        product = get_object_or_404(Products, pk=pk)
+        product.delete()
+    return redirect("products")
 
 def edit_category(request, pk):
     category = Categories.objects.get(pk=pk)
