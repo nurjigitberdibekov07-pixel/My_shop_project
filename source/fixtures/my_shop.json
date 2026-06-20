@@ -25,19 +25,6 @@
 },
 {
     "model": "my_shop.products",
-    "pk": 3,
-    "fields": {
-        "name": "Poco x5 pro 5g",
-        "description": "",
-        "category": 2,
-        "created": "2026-06-01T10:39:17.918Z",
-        "price": "22000.00",
-        "image": "https://i02.appmifile.com/mi-com-product/fly-birds/poco-x5-pro-5g/pc/img11.jpg",
-        "stock": 1
-    }
-},
-{
-    "model": "my_shop.products",
     "pk": 8,
     "fields": {
         "name": "MacBook Air",
@@ -112,6 +99,32 @@
         "price": "5000.00",
         "image": "https://softech.kg/image/cache/catalog/Products/Acsessuary/Nothing/CMF%20Buds%20Pro%202/3-800x800.jpg",
         "stock": 4
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 14,
+    "fields": {
+        "name": "IQOO 15",
+        "description": "4000000 antutu",
+        "category": 2,
+        "created": "2026-06-20T12:03:40.980Z",
+        "price": "30000.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc5HV2ONg-3md2Rm-dm_P_ocTPF0X4-oUMUwxHKMeXYfT9NdItEg-rNpEO&s=10",
+        "stock": 12
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 15,
+    "fields": {
+        "name": "MacBook Neo",
+        "description": "Compact laptop",
+        "category": 4,
+        "created": "2026-06-20T12:05:38.417Z",
+        "price": "40000.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRZhXADAL3qFHXIVtWB1lF6zQ8VYwBNJh8ej1Bw_Z9gg&s=10",
+        "stock": 10
     }
 }
 ]
