@@ -1,19 +1,7 @@
 from django.forms import ModelForm, widgets, IntegerField, DecimalField
 from django.core.exceptions import ValidationError
-from my_shop.models import Products, Categories
-from django import forms
+from my_shop.models import Products
 
-class SearchForm(forms.Form):
-    name = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Search name'})
-    )
-
-
-class CategoriesForm(ModelForm):
-    class Meta:
-        model = Categories
-        fields = ["name", "description"]
 
 
 class ProductsForm(ModelForm):
@@ -62,4 +50,3 @@ class ProductsForm(ModelForm):
         if len(description) > 3000:
             raise ValidationError("Description must be at most 3000 characters long")
         return description
-
