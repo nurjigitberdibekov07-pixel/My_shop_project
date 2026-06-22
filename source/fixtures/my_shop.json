@@ -1,34 +1,10 @@
 [
 {
-    "model": "my_shop.categories",
-    "pk": 2,
-    "fields": {
-        "name": "Smartphone",
-        "description": "Smartphones are essential all-in-one pocket computers that connect us to the world. They blend communication, entertainment, productivity, and professional-grade photography into a single sleek device."
-    }
-},
-{
-    "model": "my_shop.categories",
-    "pk": 4,
-    "fields": {
-        "name": "Laptop",
-        "description": "Nice instrument"
-    }
-},
-{
-    "model": "my_shop.categories",
-    "pk": 10,
-    "fields": {
-        "name": "earphone",
-        "description": ""
-    }
-},
-{
     "model": "my_shop.products",
     "pk": 8,
     "fields": {
         "name": "MacBook Air",
-        "description": "",
+        "description": "22222",
         "category": 4,
         "created": "2026-06-08T11:43:49.991Z",
         "price": "4000.00",
@@ -125,6 +101,30 @@
         "price": "40000.00",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRZhXADAL3qFHXIVtWB1lF6zQ8VYwBNJh8ej1Bw_Z9gg&s=10",
         "stock": 10
+    }
+},
+{
+    "model": "my_shop.categories",
+    "pk": 2,
+    "fields": {
+        "name": "Smartphone",
+        "description": "Smartphones are essential all-in-one pocket computers that connect us to the world. They blend communication, entertainment, productivity, and professional-grade photography into a single sleek device."
+    }
+},
+{
+    "model": "my_shop.categories",
+    "pk": 4,
+    "fields": {
+        "name": "Laptop",
+        "description": "Nice instrument"
+    }
+},
+{
+    "model": "my_shop.categories",
+    "pk": 10,
+    "fields": {
+        "name": "earphone",
+        "description": ""
     }
 }
 ]

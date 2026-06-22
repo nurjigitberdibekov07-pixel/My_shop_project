@@ -1,29 +1,20 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView
+from django.shortcuts import get_object_or_404, reverse
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from urllib.parse import urlencode
+from django.db.models import Q
 
 from my_shop.models import Products
 from my_shop.forms import ProductsForm, SearchForm
 
 
 # Create your views here.
-# def products_view(request):
-#     products = Products.objects.filter(stock__gt=0).order_by("category__name", "name")
-#     search_form = SearchForm(request.GET)
-#
-#     if search_form.is_valid():
-#         name = search_form.cleaned_data.get('name')
-#         if name:
-#             products = products.filter(name__icontains=name)
-#
-#     context = {'products': products, 'search_form': search_form}
-#     return render(request, "my_shop_forms/products.html", context)
 
 class ProductsListView(ListView):
     template_name = 'my_shop_forms/products/products.html'
     model = Products
     context_object_name = 'products'
-    queryset = Products.objects.all()
+    queryset = Products.objects.all().order_by('name')
     paginate_by = 5
 
     def dispatch(self, request, *args, **kwargs):
@@ -43,7 +34,7 @@ class ProductsListView(ListView):
         queryset = super().get_queryset()
 
         if self.search_value:
-            queryset = self.queryset.filter(name__icontains=self.search_value)
+            queryset = self.queryset.filter(Q(Q(name__icontains=self.search_value) | Q(stock__gt=0))).order_by('name')
 
         return queryset
 
@@ -56,41 +47,37 @@ class ProductsListView(ListView):
             context['search_value'] = self.search_value
         return context
 
-def product_detail(request, pk):
-    product = Products.objects.get(pk=pk)
-    context = {'product': product}
-    return render(request, "my_shop_forms/detail_product.html", context)
 
-def add_product(request):
-    form = ProductsForm()
-    if request.method == "GET":
-        return render(request, "my_shop_forms/product_add.html", {'form': form})
+class ProductDetailView(DetailView):
+    template_name = 'my_shop_forms/products/detail_product.html'
+    model = Products
 
-    if request.method == "POST":
-        form = ProductsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("products")
-        else:
-            return render(request, "my_shop_forms/product_add.html", {'form': form})
-
-def delete_product(request, pk):
-    if request.method == "POST":
-        product = get_object_or_404(Products, pk=pk)
-        product.delete()
-    return redirect("products")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = get_object_or_404(Products, pk=self.kwargs['pk'])
+        return context
 
 
-def edit_product(request, pk):
-    product = Products.objects.get(pk=pk)
-    form = ProductsForm(instance=product)
-    context = {'product': product, 'form': form}
-    if request.method == "GET":
-        return render(request, "my_shop_forms/product_edit.html", context)
+class ProductsCreateView(CreateView):
+    template_name = 'my_shop_forms/products/product_add.html'
+    form_class = ProductsForm
 
-    if request.method == "POST":
-        form = ProductsForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect("products")
-        return render(request, "my_shop_forms/product_edit.html", context)
+    def get_success_url(self):
+        return reverse("product_detail", kwargs={'pk': self.object.pk})
+
+
+class ProductsDeleteView(DeleteView):
+    model = Products
+    context_object_name = 'product'
+    success_url = reverse_lazy("products")
+
+
+class ProductsUpdateView(UpdateView):
+    model = Products
+    context_object_name = 'product'
+    form_class = ProductsForm
+    template_name = 'my_shop_forms/products/product_edit.html'
+
+    def get_success_url(self):
+        return reverse("product_detail", kwargs={'pk': self.object.pk})
+

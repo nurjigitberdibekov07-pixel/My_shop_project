@@ -1,15 +1,15 @@
 from django.urls import path
-from my_shop.views import (ProductsListView,add_category, add_product, product_detail, categories_view, delete_category,
-                           edit_category, delete_product, edit_product)
+from my_shop.views import (ProductsListView,add_category, ProductsCreateView, ProductDetailView, categories_view, delete_category,
+                           edit_category, ProductsDeleteView, ProductsUpdateView)
 
 urlpatterns = [
     path('products/', ProductsListView.as_view(), name='products'),
     path('categories/add/', add_category, name='add_category'),
-    path('products/add/', add_product, name='add_product'),
-    path('products/<int:pk>/', product_detail, name='product_detail'),
+    path('products/add/', ProductsCreateView.as_view(), name='add_product'),
+    path('products/<int:pk>/', ProductDetailView.as_view(), name='product_detail'),
     path('categories/', categories_view, name='categories_view'),
     path('categories/<int:pk>/delete/', delete_category, name='delete_category'),
     path('categories/<int:pk>/edit/', edit_category, name='edit_category'),
-    path('products/<int:pk>/delete/', delete_product, name='delete_product'),
-    path('products/<int:pk>/edit/', edit_product, name='edit_product'),
+    path('products/<int:pk>/delete/', ProductsDeleteView.as_view(), name='delete_product'),
+    path('products/<int:pk>/edit/', ProductsUpdateView.as_view(), name='edit_product'),
 ]
