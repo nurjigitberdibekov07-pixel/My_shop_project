@@ -1,65 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from my_shop.models import Products, Categories
-from my_shop.forms import ProductsForm, SearchForm
 
 
 # Create your views here.
-def products_view(request):
-    products = Products.objects.filter(stock__gt=0).order_by("category__name", "name")
-    search_form = SearchForm(request.GET)
 
-    if search_form.is_valid():
-        name = search_form.cleaned_data.get('name')
-        if name:
-            products = products.filter(name__icontains=name)
-
-    context = {'products': products, 'search_form': search_form}
-    return render(request, "my_shop_forms/products.html", context)
 
 def categories_view(request):
     categories = Categories.objects.all()
     context = {'categories': categories}
     return render(request, "my_shop_forms/categories.html", context)
 
-def product_detail(request, pk):
-    product = Products.objects.get(pk=pk)
-    context = {'product': product}
-    return render(request, "my_shop_forms/detail_product.html", context)
 
-def add_product(request):
-    form = ProductsForm()
-    if request.method == "GET":
-        return render(request, "my_shop_forms/product_add.html", {'form': form})
-
-    if request.method == "POST":
-        form = ProductsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("products")
-        else:
-            return render(request, "my_shop_forms/product_add.html", {'form': form})
-
-def delete_product(request, pk):
-    if request.method == "POST":
-        product = get_object_or_404(Products, pk=pk)
-        product.delete()
-    return redirect("products")
-
-
-def edit_product(request, pk):
-    product = Products.objects.get(pk=pk)
-    form = ProductsForm(instance=product)
-    context = {'product': product, 'form': form}
-    if request.method == "GET":
-        return render(request, "my_shop_forms/product_edit.html", context)
-
-    if request.method == "POST":
-        form = ProductsForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect("products")
-        return render(request, "my_shop_forms/product_edit.html", context)
 
 
 def add_category(request):

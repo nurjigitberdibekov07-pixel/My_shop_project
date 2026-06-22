@@ -7,13 +7,14 @@
 
 {% block content %}
 
-    <div class="border rounded-3 my-4 p-3">
+    <div class="border rounded-3 my-4 p-3 d-flex justify-content-between align-items-center">
         <h1>My market</h1>
-    </div>
-    <form method="GET" action="{% url 'products' %}" class="my-4 d-flex gap-2">
-        {{ search_form.name }}
-        <button type="submit" class="btn btn-primary">Найти</button>
+    <form class="d-flex" action="" method="GET">
+            {{ search_form }}
+            <button class="btn btn-sm btn-outline-primary">Поиск</button>
     </form>
+    </div>
+
 <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-4">
     {% for product in products %}
         <div class="col" >
@@ -32,6 +33,9 @@
         <p>Нет данных</p>
     {% endfor %}
 </div>
+    {% if is_paginated %}
+        {% include 'partial/paginator.html' %}
+    {% endif %}
 
 
 {% endblock %}
