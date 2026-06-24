@@ -62,8 +62,8 @@ class ProductsCreateView(CreateView):
     template_name = 'my_shop_forms/products/product_add.html'
     form_class = ProductsForm
 
-    def get_success_url(self):
-        return reverse("product_detail", kwargs={'pk': self.object.pk})
+    # def get_success_url(self):
+    #     return reverse("product_detail", kwargs={'pk': self.object.pk})
 
 
 class ProductsDeleteView(DeleteView):

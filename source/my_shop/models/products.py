@@ -20,5 +20,5 @@ class Products(models.Model):
         db_table = "Продукты"
         verbose_name = "Продукт"
 
-    def absolute_url(self):
-        return reverse("products:detail", kwargs={"id": self.id})
+    def get_absolute_url(self):
+        return reverse("product_detail", kwargs={"pk": self.id})

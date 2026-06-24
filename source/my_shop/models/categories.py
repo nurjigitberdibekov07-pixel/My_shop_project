@@ -13,5 +13,5 @@ class Categories(models.Model):
         db_table = "Категории"
         verbose_name = "категория"
 
-    def absolute_url(self):
+    def get_absolute_url(self):
         return reverse("category_detail", kwargs={"pk": self.pk})
