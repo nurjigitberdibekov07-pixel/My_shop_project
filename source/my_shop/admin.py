@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from my_shop.models import Products, Categories
+from my_shop.models import Products, Categories, Cart
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ["id", "name", "description", "price", "image", "category", "created", "stock"]
@@ -14,5 +14,10 @@ class CategoriesAdmin(admin.ModelAdmin):
     list_display = ["id","name", "description"]
     search_fields = ["name"]
 
+class CartsAdmin(admin.ModelAdmin):
+    list_display = ["id","product", "count"]
+    fields = ["product", "count"]
+
 admin.site.register(Products, ProductAdmin)
 admin.site.register(Categories, CategoriesAdmin)
+admin.site.register(Cart, CartsAdmin)
