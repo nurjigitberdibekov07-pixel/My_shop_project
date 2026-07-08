@@ -5,7 +5,7 @@ from urllib.parse import urlencode
 from django.db.models import Q
 
 from my_shop.models import Products
-from my_shop.forms import ProductsForm, SearchForm
+from my_shop.forms import ProductsForm, SearchForm, NumberInputForm
 
 
 # Create your views here.
@@ -41,6 +41,7 @@ class ProductsListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['search_form'] = self.form
+        context['number_input'] = NumberInputForm()
 
         if self.search_value:
             context['query'] = urlencode({'search': self.search_value})
@@ -55,15 +56,13 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['product'] = get_object_or_404(Products, pk=self.kwargs['pk'])
+        context['number_input'] = NumberInputForm()
         return context
 
 
 class ProductsCreateView(CreateView):
     template_name = 'my_shop_forms/products/product_add.html'
     form_class = ProductsForm
-
-    # def get_success_url(self):
-    #     return reverse("product_detail", kwargs={'pk': self.object.pk})
 
 
 class ProductsDeleteView(DeleteView):
