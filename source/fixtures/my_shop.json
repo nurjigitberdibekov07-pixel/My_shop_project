@@ -1,42 +1,238 @@
 [
 {
-    "model": "my_shop.categories",
-    "pk": 1,
+    "model": "my_shop.products",
+    "pk": 8,
     "fields": {
-        "name": "Laptops",
+        "name": "MacBook Air",
+        "description": "22222",
+        "category": 4,
+        "created": "2026-06-08T11:43:49.991Z",
+        "price": "4000.00",
+        "image": "https://www.myphone.kg/files/media/27/27176.webp",
+        "stock": 4
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 9,
+    "fields": {
+        "name": "AirPods",
+        "description": "best earphones",
+        "category": 10,
+        "created": "2026-06-08T12:05:23.203Z",
+        "price": "1999.97",
+        "image": "https://www.macworld.com/wp-content/uploads/2024/10/airpods-4-front-case-2.jpg?quality=50&strip=all",
+        "stock": 5
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 10,
+    "fields": {
+        "name": "OnePlus 15",
+        "description": "One of the best china phone",
+        "category": 2,
+        "created": "2026-06-08T12:11:44.010Z",
+        "price": "4000.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGe3BhHayFjisfCVzXPoofo-jDheFxfLEvuQ&s",
+        "stock": 9
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 11,
+    "fields": {
+        "name": "vivo x300 ultra",
+        "description": "Best cameraphone in china",
+        "category": 2,
+        "created": "2026-06-08T12:13:39.336Z",
+        "price": "50000.00",
+        "image": "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc5/Vivo-X300-Ultra-tritt-auch-in-Europa-gegen-Xiaomi-17-Ultra-an-verliert-aber-offenbar-Kamera-Feature.jpg",
+        "stock": 5
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 12,
+    "fields": {
+        "name": "MacBook Pro 13",
+        "description": "",
+        "category": 4,
+        "created": "2026-06-08T12:14:49.489Z",
+        "price": "50000.00",
+        "image": "https://fishka.kg/image/catalog/Products/Laptop/Apple/%20MacBook%20Air%2013%202025%20M4/Frame%20128.webp",
+        "stock": 7
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 13,
+    "fields": {
+        "name": "nothing buds pro 2",
+        "description": "",
+        "category": 10,
+        "created": "2026-06-08T12:15:52.480Z",
+        "price": "5000.00",
+        "image": "https://softech.kg/image/cache/catalog/Products/Acsessuary/Nothing/CMF%20Buds%20Pro%202/3-800x800.jpg",
+        "stock": 4
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 14,
+    "fields": {
+        "name": "IQOO 15",
+        "description": "4000000 antutu",
+        "category": 2,
+        "created": "2026-06-20T12:03:40.980Z",
+        "price": "30000.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc5HV2ONg-3md2Rm-dm_P_ocTPF0X4-oUMUwxHKMeXYfT9NdItEg-rNpEO&s=10",
+        "stock": 12
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 15,
+    "fields": {
+        "name": "MacBook Neo",
+        "description": "Compact laptop",
+        "category": 4,
+        "created": "2026-06-20T12:05:38.417Z",
+        "price": "40000.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRZhXADAL3qFHXIVtWB1lF6zQ8VYwBNJh8ej1Bw_Z9gg&s=10",
+        "stock": 10
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 22,
+    "fields": {
+        "name": "Redmagic 11 pro",
+        "description": "",
+        "category": 2,
+        "created": "2026-06-22T10:37:11.875Z",
+        "price": "4000.00",
+        "image": "https://login.kg/image/catalog/new/Phones/ZTE/11%20Pro/27.jpg",
+        "stock": 5
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 23,
+    "fields": {
+        "name": "realme gt 8 pro",
+        "description": "",
+        "category": 2,
+        "created": "2026-07-06T13:47:17.979Z",
+        "price": "20000.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLizm79NOZWTpXY9ZfR3vivNVR2BOMba690yT62SPfATFXPC4Of5jIfzEC&s=10",
+        "stock": 0
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 24,
+    "fields": {
+        "name": "oppo find x9 ultra",
+        "description": "white",
+        "category": 2,
+        "created": "2026-07-09T09:21:12.032Z",
+        "price": "20000.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9CrpQ1UUselp2YVMEnCdCilk9lIXMmRT1Ppzn4up3rn-VmlDgVgu0K8Fq&s=10",
+        "stock": 4
+    }
+},
+{
+    "model": "my_shop.categories",
+    "pk": 2,
+    "fields": {
+        "name": "Smartphone",
+        "description": "Smartphones are essential all-in-one pocket computers that connect us to the world. They blend communication, entertainment, productivity, and professional-grade photography into a single sleek device."
+    }
+},
+{
+    "model": "my_shop.categories",
+    "pk": 4,
+    "fields": {
+        "name": "Laptop",
         "description": "Nice instrument"
     }
 },
 {
     "model": "my_shop.categories",
-    "pk": 2,
+    "pk": 10,
     "fields": {
-        "name": "Phone",
-        "description": "Smartphones are essential all-in-one pocket computers that connect us to the world. They blend communication, entertainment, productivity, and professional-grade photography into a single sleek device."
+        "name": "Earphone",
+        "description": ""
     }
 },
 {
-    "model": "my_shop.products",
+    "model": "my_shop.cart",
+    "pk": 10,
+    "fields": {
+        "product": 8,
+        "count": 2
+    }
+},
+{
+    "model": "my_shop.cart",
+    "pk": 11,
+    "fields": {
+        "product": 22,
+        "count": 1
+    }
+},
+{
+    "model": "my_shop.cart",
+    "pk": 12,
+    "fields": {
+        "product": 11,
+        "count": 3
+    }
+},
+{
+    "model": "my_shop.cart",
+    "pk": 13,
+    "fields": {
+        "product": 13,
+        "count": 1
+    }
+},
+{
+    "model": "my_shop.order",
     "pk": 1,
     "fields": {
-        "name": "MacBook Air",
-        "description": "One of the best laptops in the world",
-        "category": 1,
-        "created": "2026-06-01T08:22:52.434Z",
-        "price": "36000.00",
-        "image": "https://www.myphone.kg/files/media/27/27176.webp"
+        "name": "Нуржигит Бердибеков",
+        "phone_number": "0500601088",
+        "address": "Ак-Ордо",
+        "created_at": "2026-07-08T11:59:31.108Z"
     }
 },
 {
-    "model": "my_shop.products",
+    "model": "my_shop.intermediatetable",
+    "pk": 1,
+    "fields": {
+        "product": 14,
+        "order": 1,
+        "count": 4
+    }
+},
+{
+    "model": "my_shop.intermediatetable",
     "pk": 2,
     "fields": {
-        "name": "Poco x5 pro 5g",
-        "description": "",
-        "category": 2,
-        "created": "2026-06-01T08:26:08.631Z",
-        "price": "26000.00",
-        "image": "https://i02.appmifile.com/mi-com-product/fly-birds/poco-x5-pro-5g/pc/img11.jpg"
+        "product": 8,
+        "order": 1,
+        "count": 2
+    }
+},
+{
+    "model": "my_shop.intermediatetable",
+    "pk": 3,
+    "fields": {
+        "product": 15,
+        "order": 1,
+        "count": 3
     }
 }
 ]

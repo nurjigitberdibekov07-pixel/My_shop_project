@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 {% block nav %}
-    <a class="nav-link" href="{% url 'add_product' %}">Add product</a>
+    <a class="nav-link" href="{% url 'add_product' %}?next={{ request.get_full_path }}">Add product</a>
     <a class="nav-link" href="{% url 'categories_view' %}">Categories</a>
 {% endblock %}
 
 {% block content %}
 
     <div class="card my-5">
-        <div class="card-header fs-4 text-center py-3">Add category</div>
+        <div class="card-header fs-4 text-center py-3">Edit category</div>
 
         <div class="card-body">
             <form id="article-form" action="" method="POST">
                 {% csrf_token %}
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="name">
-                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="name" value="{{ category.name }}">
+                    <label for="name"> category name</label>
                 </div>
                 <div class="form-floating mb-3">
                     <textarea type="text" class="form-control" id="description" name="description" placeholder="description"
-                              style="height: 100px"></textarea>
+                              style="height: 100px">{{ category.description }}</textarea>
                     <label for="description">Description</label>
                 </div>
                 {% if error %} <p style="margin-bottom: 20px; color: red">{{ error }}</p> {% endif %}
             <div>
-                <button type="submit" form="article-form" class="btn btn-sm btn-primary">Save</button>
+                <button type="submit" form="article-form" class="btn btn-sm btn-primary">Edit category</button>
             </div>
             </form>
         </div>

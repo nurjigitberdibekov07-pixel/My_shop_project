@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block nav %}
+    <a class="nav-link" href="{% url 'add_category' %}?next={{ request.get_full_path }}">Add category</a>
+    <a class="nav-link" href="{% url 'add_product' %}?next={{ request.get_full_path }}">Add product</a>
+    <a class="nav-link" href="{% url 'categories_view' %}">Categories</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="border rounded-3 my-4 p-3 d-flex justify-content-between align-items-center">
+        <h1>My market</h1>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">name</th>
+          <th scope="col">price</th>
+          <th scope="col">count</th>
+          <th scope="col">total</th>
+        </tr>
+      </thead>
+    <tbody>
+        {% for item in products %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.price }}</td>
+                <td>{{ item.count }}</td>
+                <td>{{ item.total_price }}</td>
+                <td>
+                    <form method="post" action="{% url 'delete_cart' item.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger p-1">
+                                Delete
+                            </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+    <div class="border rounded-3 my-4 p-3">
+        <h4>Total: {{ total }}</h4>
+    </div>
+
+        <div class="card my-5">
+            <div class="card-header fs-4 text-center py-3">Order</div>
+            <div class="card-body">
+                <form action="{% url 'order_create' %}?next={{ request.full.path }}" id="form" method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                </form>
+            </div>
+            <div class="card-footer text-end py-3">
+                <button type="submit" form="form" class="btn btn-sm btn-primary">Save</button>
+            </div>
+        </div>
+
+
+{% endblock %}

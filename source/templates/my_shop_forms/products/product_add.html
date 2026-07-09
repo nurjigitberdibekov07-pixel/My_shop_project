@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block nav %}
+    <a class="nav-link" href="{% url 'add_category' %}?next={{ request.get_full_path }}">Add category</a>
+    <a class="nav-link" href="{% url 'categories_view' %}">Categories</a>
+{% endblock %}
+
+{% block content %}
+    <div class="card my-5">
+        <div class="card-header fs-4 text-center py-3">Add product</div>
+        <div class="card-body">
+            {% include 'partial/product_form.html' with action=action %}
+        </div>
+
+        <div class="card-footer text-end py-3">
+            <button type="submit" form="product-form" class="btn btn-sm btn-primary">Add</button>
+        </div>
+    </div>
+{% endblock %}
