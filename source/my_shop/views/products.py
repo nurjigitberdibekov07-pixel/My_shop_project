@@ -29,12 +29,11 @@ class ProductsListView(ListView):
         if self.form.is_valid():
             return self.form.cleaned_data['search']
 
-
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().filter(stock__gt=0)
 
         if self.search_value:
-            queryset = self.queryset.filter(Q(Q(name__icontains=self.search_value) | Q(stock__gt=0))).order_by('name')
+            queryset = queryset.filter(Q(name__icontains=self.search_value)).order_by('name')
 
         return queryset
 
@@ -64,6 +63,13 @@ class ProductsCreateView(CreateView):
     template_name = 'my_shop_forms/products/product_add.html'
     form_class = ProductsForm
 
+    def get_success_url(self):
+        next_url = self.request.GET.get('next')
+        if not next_url:
+            next_url = self.request.POST.get('next')
+        if not next_url:
+            next_url = reverse('cart')
+        return next_url
 
 class ProductsDeleteView(DeleteView):
     model = Products

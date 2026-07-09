@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DeleteView, View
 
+from my_shop.forms import OrderForm
 from my_shop.models import Products, Cart
 
 
@@ -38,12 +39,11 @@ class CartListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(self.queryset)
         total = 0
-        for i in self.queryset:
+        for i in self.get_queryset():
             total += i.count * i.product.price
-        print(total)
         context['total'] = total
+        context['form'] = OrderForm()
         return context
 
 class CartDeleteView(DeleteView):
