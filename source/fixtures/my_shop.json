@@ -104,6 +104,45 @@
     }
 },
 {
+    "model": "my_shop.products",
+    "pk": 22,
+    "fields": {
+        "name": "Redmagic 11 pro",
+        "description": "",
+        "category": 2,
+        "created": "2026-06-22T10:37:11.875Z",
+        "price": "4000.00",
+        "image": "https://login.kg/image/catalog/new/Phones/ZTE/11%20Pro/27.jpg",
+        "stock": 5
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 23,
+    "fields": {
+        "name": "realme gt 8 pro",
+        "description": "",
+        "category": 2,
+        "created": "2026-07-06T13:47:17.979Z",
+        "price": "20000.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLizm79NOZWTpXY9ZfR3vivNVR2BOMba690yT62SPfATFXPC4Of5jIfzEC&s=10",
+        "stock": 0
+    }
+},
+{
+    "model": "my_shop.products",
+    "pk": 24,
+    "fields": {
+        "name": "oppo find x9 ultra",
+        "description": "white",
+        "category": 2,
+        "created": "2026-07-09T09:21:12.032Z",
+        "price": "20000.00",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9CrpQ1UUselp2YVMEnCdCilk9lIXMmRT1Ppzn4up3rn-VmlDgVgu0K8Fq&s=10",
+        "stock": 4
+    }
+},
+{
     "model": "my_shop.categories",
     "pk": 2,
     "fields": {
@@ -123,8 +162,77 @@
     "model": "my_shop.categories",
     "pk": 10,
     "fields": {
-        "name": "earphone",
+        "name": "Earphone",
         "description": ""
+    }
+},
+{
+    "model": "my_shop.cart",
+    "pk": 10,
+    "fields": {
+        "product": 8,
+        "count": 2
+    }
+},
+{
+    "model": "my_shop.cart",
+    "pk": 11,
+    "fields": {
+        "product": 22,
+        "count": 1
+    }
+},
+{
+    "model": "my_shop.cart",
+    "pk": 12,
+    "fields": {
+        "product": 11,
+        "count": 3
+    }
+},
+{
+    "model": "my_shop.cart",
+    "pk": 13,
+    "fields": {
+        "product": 13,
+        "count": 1
+    }
+},
+{
+    "model": "my_shop.order",
+    "pk": 1,
+    "fields": {
+        "name": "Нуржигит Бердибеков",
+        "phone_number": "0500601088",
+        "address": "Ак-Ордо",
+        "created_at": "2026-07-08T11:59:31.108Z"
+    }
+},
+{
+    "model": "my_shop.intermediatetable",
+    "pk": 1,
+    "fields": {
+        "product": 14,
+        "order": 1,
+        "count": 4
+    }
+},
+{
+    "model": "my_shop.intermediatetable",
+    "pk": 2,
+    "fields": {
+        "product": 8,
+        "order": 1,
+        "count": 2
+    }
+},
+{
+    "model": "my_shop.intermediatetable",
+    "pk": 3,
+    "fields": {
+        "product": 15,
+        "order": 1,
+        "count": 3
     }
 }
 ]
