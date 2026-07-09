@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block nav %}
-    <a class="nav-link" href="{% url 'add_category' %}">Add category</a>
-    <a class="nav-link" href="{% url 'add_product' %}">Add product</a>
+    <a class="nav-link" href="{% url 'add_category' %}?next={{ request.get_full_path }}">Add category</a>
+    <a class="nav-link" href="{% url 'add_product' %}?next={{ request.get_full_path }}">Add product</a>
     <a class="nav-link" href="{% url 'categories_view' %}">Categories</a>
 {% endblock %}
 
@@ -43,5 +43,19 @@
     <div class="border rounded-3 my-4 p-3">
         <h4>Total: {{ total }}</h4>
     </div>
+
+        <div class="card my-5">
+            <div class="card-header fs-4 text-center py-3">Order</div>
+            <div class="card-body">
+                <form action="{% url 'order_create' %}?next={{ request.full.path }}" id="form" method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                </form>
+            </div>
+            <div class="card-footer text-end py-3">
+                <button type="submit" form="form" class="btn btn-sm btn-primary">Save</button>
+            </div>
+        </div>
+
 
 {% endblock %}

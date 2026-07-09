@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block nav %}
-    <a class="nav-link" href="{% url 'add_category' %}">Add category</a>
+    <a class="nav-link" href="{% url 'add_category' %}?next={{ request.get_full_path }}">Add category</a>
     <a class="nav-link" href="{% url 'categories_view' %}">Categories</a>
 {% endblock %}
 
